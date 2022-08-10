@@ -1,0 +1,22 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Assignment {
+  _id: ID
+  attachements: [attachements!]!
+  dueDate: String
+  instructions: String
+  title: String
+}
+
+type Query {
+  assignment: [Assignment!]!
+}
+
+type attachements {
+  filePath: String
+  name: String
+  size: String
+  type: String
+}
