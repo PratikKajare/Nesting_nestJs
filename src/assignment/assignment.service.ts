@@ -103,8 +103,11 @@ export class AssignmentService {
   // }
 
   async update(id: string, updateAssignmentInput: CreateAssignmentInput) {
+    const found = this.findOne(id);
     const post = await this.AssiModel.findByIdAndUpdate(
-      id,
+      (
+        await found
+      ).id,
       updateAssignmentInput,
     )
       .setOptions({ overwrite: false, new: true, nullable: true })
@@ -141,4 +144,7 @@ export class AssignmentService {
 
     return (await post.save()) as any;
   }
+  // async attachements(_id){
+  //   const [attach] = await this.AssiModel.filter()
+  // }
 }
