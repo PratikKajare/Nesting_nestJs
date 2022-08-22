@@ -1,17 +1,22 @@
 import { InputType, Int, Field, ID } from '@nestjs/graphql';
-import { Schema } from '@nestjs/mongoose';
-import { type } from 'os';
-
+import { IsNotEmpty } from 'class-validator';
 @InputType()
 export class CreateAssignmentInput {
   @Field(() => ID, { nullable: true })
   _id: string;
+  @IsNotEmpty()
   @Field({ nullable: true })
   title: string;
   @Field({ nullable: true })
-  dueDate: string;
+  dueDate: Date;
   @Field({ nullable: true })
-  instructions: string;
+  instructions?: string;
+  @Field((type) => Boolean, { nullable: true })
+  shouldEmailAssignees?: boolean;
+  @Field({ nullable: true })
+  status?: string;
+  @Field({ nullable: true })
+  assignType?: string;
   @Field((type) => [attach], { nullable: true })
   attachements: attach[];
   @Field((type) => [assignees], { nullable: true })
@@ -23,6 +28,8 @@ export class CreateAssignmentInput {
 }
 @InputType()
 export class attach {
+  @Field(() => ID, { nullable: true })
+  _id: string;
   @Field((type) => String, { nullable: true })
   name: string;
   @Field((type) => String, { nullable: true })

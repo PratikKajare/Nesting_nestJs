@@ -8,9 +8,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { config } from './config/configuration';
 import { MongooseConfigService } from './config/database.config';
+import { DemoModule } from './structure/assignment.module';
 @Module({
   imports: [
-    AssignmentModule,
+    DemoModule,
     GraphQLModule.forRoot({
       driver: ApolloDriver,
       autoSchemaFile: true,

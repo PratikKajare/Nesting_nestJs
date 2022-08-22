@@ -9,7 +9,16 @@ export class Assignment {
   title: string;
   @Prop()
   @Field({ nullable: true })
-  dueDate: string;
+  dueDate: Date;
+  @Prop()
+  @Field((type) => Boolean, { nullable: true })
+  shouldEmailAssignees?: boolean;
+  @Prop()
+  @Field({ nullable: true })
+  status?: string;
+  @Prop()
+  @Field({ nullable: true })
+  assignType?: string;
   @Prop()
   @Field({ nullable: true })
   instructions: string;
@@ -29,6 +38,8 @@ export class Assignment {
 
 @ObjectType('attachements')
 export class attach {
+  @Field(() => ID, { nullable: true })
+  _id: string;
   @Field((type) => String, { nullable: true })
   name: string;
   @Field((type) => String, { nullable: true })
